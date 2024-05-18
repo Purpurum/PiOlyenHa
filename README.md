@@ -27,7 +27,7 @@
 <p>
   Если вы решили попробовать нескомпилированное приложение, то вам необходимо:<br>
   1. Установить Python версии не меньше 3.9<br>
-  2. В cmd pip install -r requirements.txt<br>
+  2. В cmd "pip install -r requirements.txt"<br>
   3. Запустить PingApp.py<br>
 </p>
 
