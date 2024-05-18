@@ -58,7 +58,7 @@
 
   #### Схема работы приложения
   <p>
-    <img src="res/sch.png" border="0" /></a>
+    <img src="rme_res/sch.png" border="0" /></a>
   </p>
   <img src="" width="500" height="500"/>
 </div>
