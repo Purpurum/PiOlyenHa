@@ -56,7 +56,7 @@
   <p>
     <img src="rme_res/sch.png" border="0" /></a>
   </p>
-  /*<img src="" width="500" height="500"/>*/
+  <!--<img src="" width="500" height="500"/>-->
 </div>
 
 ## <div align="center">Результат работы моделей🔮</div>
