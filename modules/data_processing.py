@@ -14,6 +14,8 @@ def crop_image(image, x_center, y_center, width, height):
     return cropped_image
 
 def process_images(images_path, model):
+    unwritten_count = 0
+    unwritten_names = []
     path_scan = os.scandir(images_path)
     for image in path_scan:
         try:
@@ -22,6 +24,11 @@ def process_images(images_path, model):
             print(coords)
             img = crop_image(img, coords[0]["x"], coords[0]["y"], coords[0]["w"], coords[0]["h"])
             img.save("cropped/"+image.name)
+            print(image.name + " Written")
         except:
             print("Animel not found on " + image.name)
+            unwritten_count+=1
+            unwritten_names.append(image.name)
+    print("Не опознано на " + unwritten_names)
+    print("Не опознано на количестве " + unwritten_count)
         
