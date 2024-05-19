@@ -25,8 +25,9 @@
 <p>
   Вам необходимо:<br>
   &ensp; 1. Установить Python версии не меньше 3.9<br>
-  &ensp; 2. В cmd "pip install -r requirements.txt"<br>
-  &ensp; 3. Запустить PingApp.py<br>
+  &ensp; 2. В папку по пути modules/models скачать и поллжить веса с ссылки https://drive.google.com/drive/u/1/folders/1EvYpENmxXWTXIo0z2yulSk0G8F92pU2G<br>
+  &ensp; 3. В cmd "pip install -r requirements.txt"<br>
+  &ensp; 4. Запустить PingApp.py<br>
 </p>
 
 #### Как это работает?
