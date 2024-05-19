@@ -1,4 +1,4 @@
-from modules.detectors import detector
+from modules.detectors import detector, classifierResnetF
 from modules.data_processing import process_images
 
 import tkinter as tk
@@ -17,6 +17,7 @@ import os
 CHOOSE = False
 
 detector = detector()
+classifier = classifierResnetF()
 
 class AnimalLocatorApp(App):
     def build(self):
@@ -55,7 +56,6 @@ class AnimalLocatorApp(App):
                       bold= True,
                       background_color ='#00FFCE',
                       )
-        self.button.bind(on_press=self.manual_path)
         self.window.add_widget(self.button)
 
         # button widget
@@ -74,12 +74,7 @@ class AnimalLocatorApp(App):
         root = tk.Tk()
         root.withdraw()
         pathVar = filedialog.askdirectory()
-        process_images(pathVar, detector)
-
-
-    def manual_path(self, instance):
-        self.greeting.text = "Seletced path: " + self.user.text
-        process_images(self.user.text, detector)
+        process_images(pathVar, detector, classifier)
     
     def on_drop_file(self, window, file_path_bytes, x, y):
         decoded_str = file_path_bytes.decode('utf-8')
@@ -87,10 +82,9 @@ class AnimalLocatorApp(App):
         print(file_path)
         self.img.source=file_path
         
-        process_images(file_path, detector)
+        process_images(file_path, detector, classifier)
         
         return
 
-# run Say Hello App Calss
 if __name__ == "__main__":
     AnimalLocatorApp().run()

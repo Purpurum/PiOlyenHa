@@ -1,0 +1,131 @@
+#:import utils kivy.utils
+
+<Label>
+    color: utils.get_color_from_hex('#444444')
+    font_size: 20
+    font_context: 'system://myapp' 
+    font_name: 'resUI/RobotoCondensed-Regular.ttf'
+
+<Button>
+    text: ""
+    background_normal: ''
+    size_hint: (None,None)
+    color: (1, 1, 1,1)
+
+<Widget>
+
+
+
+<PingLayout>
+    manual:manual
+    openfile:openfile
+    status: status_label
+    scan:scan
+    savefile:savefile
+
+     
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex('#000F30')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+     
+    
+
+    
+
+    
+    FloatLayout:
+        size: root.width, root.height
+
+        Label:
+            pos_hint: {'x': .025, 'y': .04}
+            size_hint: .95, .8
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'resUI/mainLabel2.png'
+        
+        Label:
+            pos_hint: {'x': .025, 'y': .84}
+            size_hint: .95, .13
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'resUI/logoHeader.png'
+
+        Label:
+            pos_hint: {'x': .35, 'y':.07}
+            size_hint: .6, .7
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'resUI/mainLabel.png'
+        
+        Label:
+            pos_hint: {'x':.046, 'y':.3}
+            size_hint: .22, .4
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'resUI/procentStats.png'
+        
+        Label:
+            pos_hint: {'x':.38, 'y':.875}
+            size_hint: .49, .06
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'resUI/pathLabel.png'
+        
+
+        Button:
+            id: manual
+            size_hint: .048, .08
+            pos_hint: {'x':.895, 'y':.86}
+            background_normal: 'resUI/infoButton.png'
+            background_down: 'resUI/infoButtonDown.png'
+
+        Button:
+            id: openfile
+            size_hint: .22, .08
+            pos_hint: {'x':.142, 'y':.86}
+            background_normal: 'resUI/openButton.png'
+            background_down: 'resUI/openButtonDown.png'
+            on_press: root.press_openfile()    
+
+        Button:
+            id: scan
+            size_hint: .22, .08
+            pos_hint: {'x':.045, 'y':.72}
+            background_normal: 'resUI/scanButton.png'
+            background_down: 'resUI/scanButtonDown.png'
+            on_press: root.show_stat()
+
+        Button:
+            id: savefile              
+            size_hint: .22, .08
+            pos_hint: {'x':.045, 'y':.06}
+            background_normal: 'resUI/saveButton.png'
+            background_down: 'resUI/saveButtonDown.png'
+            
+        ScrollView:
+            size_hint: (None,None)
+            do_scroll_x: True
+            do_scroll_y: False
+            size_hint: .4, .08
+            pos_hint: {'x':.465, 'y':.893}
+            
+            Label:
+                size_hint: (None,None)
+                id: status_label
+                halign: 'right'
+                text: root.status_text
