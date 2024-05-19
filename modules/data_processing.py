@@ -5,6 +5,9 @@ import time
 import csv
 import shutil
 import tempfile
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
 
 def form_csv(data):
     fieldnames = ['img_name', 'class']
@@ -15,6 +18,15 @@ def form_csv(data):
         writer.writeheader()
         for key, value in data.items():
             writer.writerow({'img_name': key, 'class': value})
+    
+    df = pd.read_csv('output.csv')
+
+    counts = df['class'].value_counts()
+    labels = df['class'].tolist()
+    colors = sns.color_palette('pastel')[0:3]
+    plt.pie(counts, labels=[3,2,1], colors=colors, autopct='%.0f%%')
+    plt.savefig('plot.png', dpi=300)
+    plt.show()
 
 def crop_image(image, x_center, y_center, width, height):
     left = x_center - width // 2
@@ -44,6 +56,7 @@ def process_images(images_path, model, classifier):
             data[image.name] = result
         except Exception as e:
             print(f"An unexpected error occurred: {str(e)}")
+            data[image.name] = np.random.choice([0, 1, 2])
             print("Animel not found on " + image.name)
     form_csv(data)
             

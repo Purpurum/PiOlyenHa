@@ -1,4 +1,5 @@
 #:import utils kivy.utils
+#:import Factory kivy.factory.Factory
 
 <Label>
     color: utils.get_color_from_hex('#444444')
@@ -10,9 +11,14 @@
     text: ""
     background_normal: ''
     size_hint: (None,None)
-    color: (1, 1, 1,1)
 
-<Widget>
+
+<MyPopup@Popup>:
+    auto_dismiss: False
+    title: f'Сценарий использования приложения такой: \n1.Запустив приложение пользователь нажимает на кнопку Выбрать фотоархив, в открывшемся проводнике он выбирает архив или папку с собранными данными и нажимает Сохранить.  \n2.После выбора директории фотографий с фотографиями, пользователь нажимает кнопку Сканировать фотографии.  \n3.Далее немного подождав (все зависит от объема данных), в центре экрана приложения отображается статистика по обработанному фотосету. \n4.Затем у пользователя есть возможность сохранить результаты обработки фотографии моделью, с помощью кнопки Сохранить отчет.'
+    Button:
+        text: 'закрыть'
+        on_release: root.dismiss()
 
 
 
@@ -32,12 +38,7 @@
             size: self.size
 
 
-     
-    
-
-    
-
-    
+        
     FloatLayout:
         size: root.width, root.height
 
@@ -70,7 +71,7 @@
         
         Label:
             pos_hint: {'x':.046, 'y':.3}
-            size_hint: .22, .4
+            size_hint: .22, .28
             canvas:
                 Rectangle:
                     size: self.size
@@ -93,6 +94,7 @@
             pos_hint: {'x':.895, 'y':.86}
             background_normal: 'resUI/infoButton.png'
             background_down: 'resUI/infoButtonDown.png'
+            on_release: Factory.MyPopup().open()
 
         Button:
             id: openfile
@@ -108,7 +110,13 @@
             pos_hint: {'x':.045, 'y':.72}
             background_normal: 'resUI/scanButton.png'
             background_down: 'resUI/scanButtonDown.png'
-            on_press: root.show_stat()
+            on_press: root.change_image()
+
+        Image:
+            id: my_image
+            source: ''
+            size_hint: .5, .5
+            pos_hint: {'x':.4, 'y':.25}
 
         Button:
             id: savefile              

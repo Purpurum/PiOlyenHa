@@ -1,0 +1,4 @@
+best_model-kab.pth
+best_model-kos.pth
+best_model-ol.pth
+resnext50_32x4d_classifier240.pth

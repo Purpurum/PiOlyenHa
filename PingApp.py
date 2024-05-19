@@ -1,6 +1,8 @@
 from modules.detectors import detector, classifierResnetF, classifierEnseble
 from modules.data_processing import process_images, process_images_zip
 
+
+
 import threading
 from queue import Queue
 
@@ -8,10 +10,9 @@ import tkinter as tk
 from tkinter import filedialog
 
 from kivy.config import Config
-
-#Config.set('graphics', 'width', '1000')
-#Config.set('graphics', 'height', '600')
-#Config.set("graphics","resizable", '0')
+Config.set('graphics', 'width', '1000')
+Config.set('graphics', 'height', '600')
+Config.set("graphics","resizable", '0')
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
@@ -61,6 +62,9 @@ class PingLayout(Widget):
         pathVar = filedialog.askdirectory()
         self.file_queue.put(pathVar)
         threading.Thread(target=process_images_thread, args=(self.file_queue, detector, classifier)).start()
+    
+    def change_image(self):
+        self.ids.my_image.source = 'plot.png'
 
 class PingApp(App):
     file_queue = ObjectProperty(Queue())
